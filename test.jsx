@@ -47,10 +47,12 @@ describe('render', () => {
   describe('is', () => {
     it('[disabled]', () => {
       expect(render(formsElement).find('#disabled > input').is('[disabled]')).to.equal(true);
+      expect(render(formsElement).find('#simple > input').is('[disabled]')).to.equal(false);
     });
 
     it(':disabled', () => {
       expect(render(formsElement).find('#disabled > input').is(':disabled')).to.equal(true);
+      expect(render(formsElement).find('#simple > input').is(':disabled')).to.equal(false);
     });
   });
 
