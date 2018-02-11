@@ -65,6 +65,16 @@ describe('render', () => {
       expect(render(fieldSet).find('#company-select').closest(':disabled')).to.have.length(1);
     });
   });
+
+  describe('is after closest', () => {
+    it('[disabled]', () => {
+      expect(render(fieldSet).find('#company-select').closest('fieldset').is('[disabled]')).to.equal(true);
+    });
+
+    it(':disabled', () => {
+      expect(render(fieldSet).find('#company-select').closest('fieldset').is(':disabled')).to.equal(true);
+    });
+  });
 });
 
 
