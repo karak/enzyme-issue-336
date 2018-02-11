@@ -19,6 +19,20 @@ const formsElement = (
   </div>
 );
 
+// Fixture to test enzyme-#336
+const fieldSet = (
+  <form>
+    <fieldset disabled>
+      <div>
+        <select id="company-select">
+          <option value="1">Apple</option>
+          <option value="2">Google</option>
+        </select>
+      </div>
+    </fieldset>
+  </form>
+);
+
 describe('render', () => {
   describe('find', () => {
     it('[disabled]', () => {
@@ -37,6 +51,16 @@ describe('render', () => {
 
     it(':disabled', () => {
       expect(render(formsElement).find('#disabled > input').is(':disabled')).to.equal(true);
+    });
+  });
+
+  describe('closest', () => {
+    it('[disabled]', () => {
+      expect(render(fieldSet).find('#company-select').closest('[disabled]')).to.have.length(1);
+    });
+
+    it(':disabled', () => {
+      expect(render(fieldSet).find('#company-select').closest(':disabled')).to.have.length(1);
     });
   });
 });
