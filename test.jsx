@@ -33,14 +33,22 @@ const fieldSet = (
   </form>
 );
 
+const formWithButton = (
+  <form>
+    <button disabled/>
+  </form>
+);
+
 describe('render', () => {
   describe('find', () => {
     it('[disabled]', () => {
       expect(render(formsElement).find('[disabled]')).to.have.length(1);
+      expect(render(formWithButton).find('[disabled]')).to.have.length(1);
     });
 
     it(':disabled', () => {
       expect(render(formsElement).find(':disabled')).to.have.length(1);
+      expect(render(formWithButton).find(':disabled')).to.have.length(1);
     });
   });
 
@@ -48,11 +56,13 @@ describe('render', () => {
     it('[disabled]', () => {
       expect(render(formsElement).find('#disabled > input').is('[disabled]')).to.equal(true);
       expect(render(formsElement).find('#simple > input').is('[disabled]')).to.equal(false);
+      expect(render(formWithButton).find('button').is('[disabled]')).to.equal(true);
     });
 
     it(':disabled', () => {
       expect(render(formsElement).find('#disabled > input').is(':disabled')).to.equal(true);
       expect(render(formsElement).find('#simple > input').is(':disabled')).to.equal(false);
+      expect(render(formWithButton).find('button').is(':disabled')).to.equal(true);
     });
   });
 
@@ -76,5 +86,3 @@ describe('render', () => {
     });
   });
 });
-
-
